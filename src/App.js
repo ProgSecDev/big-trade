@@ -45,7 +45,7 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <Router basename="/spicy-food">
+    <Router basename="/">
       <AppContent />
     </Router>
   );
