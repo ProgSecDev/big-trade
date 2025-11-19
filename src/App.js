@@ -13,7 +13,6 @@ import Home from "./Sections/Home";
 import Product from "./Sections/Product";
 import Story from "./Sections/AboutUs";
 import Footer from "./Sections/Footer";
-import Recipes from "./Screens/Recipes";
 import SpicyPage from "./Sections/SpicyPage";
 
 const AppContent = () => {
@@ -37,7 +36,6 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<SpicyPage />} />
         <Route path="/spicy" element={<SpicyPage />} />
-        <Route path="/recipes" element={<Recipes />} />
       </Routes>
     </>
   );

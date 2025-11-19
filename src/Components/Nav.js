@@ -5,7 +5,7 @@ import logo from "../assets/Logos and Favicons/logo.png";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [navbarBg, setNavbarBg] = useState("#C5713A");
+  const [navbarBg, setNavbarBg] = useState("#182b38");
   const [textColor, setTextColor] = useState("text-white");
   const [textFont, setTextFont] = useState("text-3xl");
   const [logoSize, setLogoSize] = useState("h-40");
@@ -18,12 +18,12 @@ function Nav() {
 
   const changeNavbarBg = () => {
     if (window.scrollY >= 50) {
-      setNavbarBg("rgba(197, 113, 58, 0.5)");
+      setNavbarBg("rgba(24, 43, 56, 1)");
       setTextColor("text-white");
       setTextFont("text-1xl");
       setLogoSize("h-32");
     } else {
-      setNavbarBg("#C5713A");
+      setNavbarBg("#182b38");
       setTextColor("text-white");
       setTextFont("text-2xl");
       setLogoSize("h-40");
@@ -52,16 +52,16 @@ function Nav() {
     setIsMenuOpen(false);
   };
 
-  const handlePrivateLabelClick = () => {
-  if (location.pathname === "/" || location.pathname === "/spicy") {
-    scrollToSection("labels");
-  } else {
-    navigate("/");
-    setTimeout(() => {
-      scrollToSection("labels");
-    }, 300);
-  }
-};
+//   const handlePrivateLabelClick = () => {
+//   if (location.pathname === "/" || location.pathname === "/spicy") {
+//     scrollToSection("labels");
+//   } else {
+//     navigate("/");
+//     setTimeout(() => {
+//       scrollToSection("labels");
+//     }, 300);
+//   }
+// };
 
   return (
     <nav
@@ -100,13 +100,13 @@ function Nav() {
           } lg:block lg:justify-center w-full nav-text`}
         >
           <div
-            className="px-4 py-2 hover:text-orange-200 cursor-pointer"
+            className="px-4 py-2 hover:text-cyan-500 cursor-pointer"
             onClick={() => scrollToSection("home")}
           >
             Home
           </div>
           <div
-            className="px-4 py-2 hover:text-orange-200 cursor-pointer"
+            className="px-4 py-2 hover:text-cyan-500 cursor-pointer"
             onClick={() => scrollToSection("story")}
           >
             About us
@@ -114,10 +114,10 @@ function Nav() {
 
           <div className="relative group px-4 py-2 cursor-pointer">
             <div
-              className="hover:text-orange-200 whitespace-nowrap"
+              className="hover:text-cyan-500 whitespace-nowrap"
               onClick={() => scrollToSection("product")}
             >
-              Products
+              Our Missions
             </div>
             <div className="absolute hidden group-hover:block mt-2 bg-[#6F6D39] text-white shadow-md rounded-md whitespace-nowrap">
               {/*<div className="px-4 py-2 hover:bg-[#C5713A] cursor-pointer" onClick={() => scrollToSection("grill")}>Grill Master</div>*/}
@@ -139,16 +139,22 @@ function Nav() {
         <div
           className={`lg:flex lg:space-x-8 lg:mt-0 mt-4 flex flex-col lg:flex-row items-center ${textFont} ${
             isMenuOpen ? "block" : "hidden"
-          } lg:block lg:justify-center w-full nav-text`}
+          } lg:block lg:justify-center w-full nav-text cursor-pointer`}
         >
           <div
-            className="px-4 py-2 hover:text-orange-200 cursor-pointer"
-            onClick={handlePrivateLabelClick}
-          >
-            Private Labels
-          </div>
+              className="hover:text-cyan-500 whitespace-nowrap"
+              onClick={() => scrollToSection("product")}
+            >
+              Our Vision
+            </div>
           <div
-            className="px-4 py-2 hover:text-orange-200 cursor-pointer"
+              className="hover:text-cyan-500 whitespace-nowrap"
+              onClick={() => scrollToSection("product")}
+            >
+              Our Solutions
+            </div>
+          <div
+            className="px-4 py-2 hover:text-cyan-500 cursor-pointer"
             onClick={() => scrollToSection("footer")}
           >
             Contact Us

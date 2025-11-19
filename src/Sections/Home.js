@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import backgroundImage1 from "../assets/Banners/bg5.jpg";
-import backgroundImage2 from "../assets/Banners/bg4.jpg";
-import backgroundImage3 from "../assets/Banners/bg3.jpg";
-import logo from "../assets/Logos and Favicons/logo.png";
+import backgroundImage from "../assets/Banners/HomeBG.jpg";
+import logo from "../assets/Logos and Favicons/LogoNoBG.png";
 import "../Style/Home.css";
 
 function Home() {
@@ -27,12 +25,12 @@ function Home() {
         showThumbs={false}
         showStatus={false}
         showArrows={false}
-        interval={5000}
-        transitionTime={2000}
+        // interval={5000}
+        // transitionTime={2000}
         className="absolute inset-0"
         renderThumbs={() => null}
       >
-        {[backgroundImage1, backgroundImage2, backgroundImage3].map((bg, idx) => (
+        {[backgroundImage].map((bg, idx) => (
           <div
             key={idx}
             style={{
@@ -50,9 +48,7 @@ function Home() {
 
       {/* Logo on background */}
       <div
-        className={`home-logo-container ${
-          isScrolled ? "home-logo-scrolled" : "home-logo-center"
-        }`}
+        className={`home-logo-container`}
       >
         <img src={logo} alt="Logo" className="home-logo-image" />
       </div>
