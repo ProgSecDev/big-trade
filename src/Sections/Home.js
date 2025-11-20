@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import backgroundImage from "../assets/Banners/HomeBG.jpg";
+import backgroundImage from "../assets/Banners/homebg.jpg";
 import logo from "../assets/Logos and Favicons/LogoNoBG.png";
 import "../Style/Home.css";
 
