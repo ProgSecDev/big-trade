@@ -37,6 +37,7 @@ const AppContent = () => {
         <Route path="/" element={<SpicyPage />} />
         <Route path="/spicy" element={<SpicyPage />} />
       </Routes>
+
     </>
   );
 };
