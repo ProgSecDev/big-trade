@@ -43,7 +43,7 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <Router basename="/">
+    <Router basename="/big-trade">
       <AppContent />
     </Router>
   );
