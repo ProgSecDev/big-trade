@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/big-trade/static/css/main.829a1eea.css",
-    "main.js": "/big-trade/static/js/main.1aa3c95e.js",
+    "main.js": "/big-trade/static/js/main.9cda1391.js",
     "static/js/453.fa4cbcee.chunk.js": "/big-trade/static/js/453.fa4cbcee.chunk.js",
     "static/media/Sumac.png": "/big-trade/static/media/Sumac.ff6a8c5a3d8251b8c1a1.png",
     "static/media/Powders-Background.jpg": "/big-trade/static/media/Powders-Background.02e6bbde1be553a8cfc8.jpg",
@@ -40,11 +40,11 @@
     "static/media/facebook.png": "/big-trade/static/media/facebook.0848d3fe0d1ce2e852b3.png",
     "index.html": "/big-trade/index.html",
     "main.829a1eea.css.map": "/big-trade/static/css/main.829a1eea.css.map",
-    "main.1aa3c95e.js.map": "/big-trade/static/js/main.1aa3c95e.js.map",
+    "main.9cda1391.js.map": "/big-trade/static/js/main.9cda1391.js.map",
     "453.fa4cbcee.chunk.js.map": "/big-trade/static/js/453.fa4cbcee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.829a1eea.css",
-    "static/js/main.1aa3c95e.js"
+    "static/js/main.9cda1391.js"
   ]
 }
