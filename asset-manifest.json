@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/big-trade/static/css/main.d604bb59.css",
-    "main.js": "/big-trade/static/js/main.3e67e4d1.js",
+    "main.css": "/big-trade/static/css/main.829a1eea.css",
+    "main.js": "/big-trade/static/js/main.1aa3c95e.js",
     "static/js/453.fa4cbcee.chunk.js": "/big-trade/static/js/453.fa4cbcee.chunk.js",
     "static/media/Sumac.png": "/big-trade/static/media/Sumac.ff6a8c5a3d8251b8c1a1.png",
     "static/media/Powders-Background.jpg": "/big-trade/static/media/Powders-Background.02e6bbde1be553a8cfc8.jpg",
@@ -21,7 +21,6 @@
     "static/media/Italian Seasoning.png": "/big-trade/static/media/Italian Seasoning.ec741232e02340f6f3a3.png",
     "static/media/Kishek.png": "/big-trade/static/media/Kishek.376f16a591205c3253cc.png",
     "static/media/Cinnamon Powder.png": "/big-trade/static/media/Cinnamon Powder.19cd614c56053746fb18.png",
-    "static/media/story1.jpeg": "/big-trade/static/media/story1.880895962a408d9878f3.jpeg",
     "static/media/Turmeric Powder.png": "/big-trade/static/media/Turmeric Powder.5008d9ee3eb4c4e49f72.png",
     "static/media/Chicken Seasoning.png": "/big-trade/static/media/Chicken Seasoning.1bcebf7a424c46fe5461.png",
     "static/media/Potato Seasoning.png": "/big-trade/static/media/Potato Seasoning.c38be7abc72e599dcaf0.png",
@@ -35,19 +34,17 @@
     "static/media/Vaccum bag.png": "/big-trade/static/media/Vaccum bag.f1f9be5db298d896fd5d.png",
     "static/media/blackP.png": "/big-trade/static/media/blackP.44d7463ff800968a7cf4.png",
     "static/media/logo.png": "/big-trade/static/media/logo.41516c75c96dab51a932.png",
-    "static/media/story2.jpeg": "/big-trade/static/media/story2.7316817faa20ff92f86f.jpeg",
     "static/media/homebg.jpg": "/big-trade/static/media/homebg.8dc73813b19b8f11a283.jpg",
     "static/media/LogoNoBG.png": "/big-trade/static/media/LogoNoBG.b678bb0f7e6a1b87daf5.png",
     "static/media/instagram.png": "/big-trade/static/media/instagram.2c372c5df3905655a49d.png",
-    "static/media/Turmeric - About Us.jpg": "/big-trade/static/media/Turmeric - About Us.a8b77efcc23102973971.jpg",
     "static/media/facebook.png": "/big-trade/static/media/facebook.0848d3fe0d1ce2e852b3.png",
     "index.html": "/big-trade/index.html",
-    "main.d604bb59.css.map": "/big-trade/static/css/main.d604bb59.css.map",
-    "main.3e67e4d1.js.map": "/big-trade/static/js/main.3e67e4d1.js.map",
+    "main.829a1eea.css.map": "/big-trade/static/css/main.829a1eea.css.map",
+    "main.1aa3c95e.js.map": "/big-trade/static/js/main.1aa3c95e.js.map",
     "453.fa4cbcee.chunk.js.map": "/big-trade/static/js/453.fa4cbcee.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d604bb59.css",
-    "static/js/main.3e67e4d1.js"
+    "static/css/main.829a1eea.css",
+    "static/js/main.1aa3c95e.js"
   ]
 }
