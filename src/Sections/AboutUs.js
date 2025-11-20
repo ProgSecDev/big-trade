@@ -1,107 +1,97 @@
+// src/components/AboutTechBridge.jsx
 import React, { useEffect, useRef } from "react";
-import one from "../assets/Banners/story1.jpeg";
-import two from "../assets/Banners/story2.jpeg";
-import three from "../assets/Banners/Turmeric - About Us.jpg";
 
-function Story() {
-  const leftColumnRef = useRef(null);
-  const imageRefs = [useRef(null), useRef(null), useRef(null)];
+/**
+ * Why: We use a clipped layer to replicate the dark right-angled wedge visible in the design.
+ * Why: IntersectionObserver avoids heavy animation libs and only animates once in view.
+ */
+export default function AboutTechBridge() {
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const leftColumn = leftColumnRef.current;
-    const images = imageRefs.map((ref) => ref.current);
-    if (!leftColumn || images.some((img) => !img)) return;
+    const el = sectionRef.current;
+    if (!el) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            leftColumn.style.transition = "transform 1s ease-out";
-            leftColumn.style.transform = "translateX(0)";
-            images.forEach((img) => {
-              img.style.transition = "transform 1s ease-out";
-              img.style.transform = "translateX(0)";
-            });
+            el.classList.remove("opacity-0", "translate-y-4");
+            el.classList.add("opacity-100", "translate-y-0");
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     );
 
-    observer.observe(leftColumn);
-    images.forEach((img) => observer.observe(img));
-
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="bg-[#212121] flex justify-center items-center py-20">
-      <div className="max-w-6xl w-full px-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          <div
-            ref={leftColumnRef}
-            className="transform -translate-x-full text-center md:text-left"
+    <section className="relative overflow-hidden">
+      {/* Base gradient background */}
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(1200px_600px_at_0%_0%,#0f2534_0%,#0c2130_35%,#0a1c28_60%,#081824_100%)]" />
+
+      {/* Soft diagonal wash to match screenshot tone */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40"
+           style={{
+             background:
+               "linear-gradient(130deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.0) 100%)",
+           }}
+      />
+
+      {/* Right dark angled wedge */}
+      <div
+        aria-hidden
+        className="absolute right-0 top-0 h-full w-[55vw] max-w-[900px] -z-10"
+        style={{
+          background: "linear-gradient(180deg, #0b1b27 0%, #091521 100%)",
+          clipPath: "polygon(65% 0%, 100% 0%, 100% 100%, 35% 100%)",
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative mx-auto max-w-5xl px-6 py-20 sm:py-24 md:py-28">
+        <div
+          ref={sectionRef}
+          className="transform-gpu opacity-0 translate-y-4 transition-all duration-700 ease-out"
+        >
+          {/* Heading */}
+          <h2
+            className="text-center font-extrabold tracking-tight text-[clamp(28px,5vw,48px)]"
+            style={{ color: "#49dcc1" }}
           >
-            <h1
-              className="text-white text-4xl md:text-6xl"
-              style={{ fontFamily: "Aldhabi, cursive" }}
-            >
-              About Us
-            </h1>
-            <p
-              className="text-white mt-6"
-              style={{
-                fontFamily: "Bookman Old Style, serif",
-                fontWeight: 100,
-              }}
-            >
-              <span className="font-bold text-3xl">Spicy Food</span> founded in 2000 in the heart of Lebanon, our company has been
-              dedicated to crafting premium-quality spices that embody the rich
-              flavors and culinary heritage of the region. With a passion for
-              excellence and a commitment to authenticity, we have grown to
-              become a trusted name in the world of spices, offering a diverse
-              range of products that elevate kitchens and dining experiences
-              worldwide. Our journey began with a simple mission: to bring the
-              essence of nature's finest ingredients to every table. Over the
-              years, we have perfected the art of sourcing, blending, and
-              preserving the natural aromas and flavors of spices. <br></br>
-              <br></br>
-              From vibrant herbs to exotic spice blends, each product reflects
-              our unwavering dedication to quality, freshness, and taste. With a
-              focus on sustainability and responsible sourcing, we partner with
-              local farmers and global suppliers to ensure every spice meets the
-              highest industry standards. Our modern production facilities and
-              rigorous quality control processes guarantee that each product
-              maintains its purity and freshness from farm to table. Beyond our
-              presence in Lebanon, we proudly export our products to
-              international markets, sharing the rich flavors of Lebanese
-              culinary tradition with the world.
-            </p>
-          </div>
+            About TechBridge Group
+          </h2>
 
-          <div className="grid grid-cols-1 gap-2 justify-items-center md:flex md:justify-start mt-24">
-            {[two, one, three].map((img, idx) => (
-              <div
-                key={idx}
-                ref={imageRefs[idx]}
-                className="relative w-64 h-96 transform translate-x-full"
-              >
-                <img
-                  src={img}
-                  alt="Story"
-                  className={`w-full h-full object-cover ${
-                    idx === 2 ? "object-[65%_50%]" : ""
-                  }`}
-                />
+          {/* Aqua underline bar */}
+          <div className="mx-auto mt-4 h-1 w-40 rounded-sm"
+               style={{ backgroundColor: "#49dcc1" }}
+          />
 
-                <div className="absolute inset-0 bg-black opacity-10"></div>
-              </div>
-            ))}
-          </div>
+          {/* Lead paragraph */}
+          <p className="mx-auto mt-10 max-w-4xl text-[17px] leading-8 text-slate-300">
+            TechBridge Group bridges the gap between technology challenges and
+            business opportunities. We provide comprehensive IT solutions — from
+            network design and infrastructure to ongoing support and consultancy —
+            ensuring your technology works as hard as you do.
+          </p>
+
+          {/* Bullets */}
+          <ul className="mx-auto mt-8 max-w-3xl space-y-3 text-[17px] leading-8 text-slate-300">
+            <li>
+              • Tailored IT infrastructure and support
+            </li>
+            <li>
+              • Expertise in networking, virtualization, cloud, and open-source systems
+            </li>
+            <li>
+              • Trusted by organizations across Lebanon and the region
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
-
-export default Story;
