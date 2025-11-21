@@ -1,5 +1,7 @@
 // src/sections/OurSolutions.jsx
+import React, { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import VID2 from "../assets/Vids/VID-2.mp4";
 import {
   Laptop2,
   Wrench,
@@ -13,64 +15,18 @@ import {
   ChevronRight,
   Cpu,
 } from "lucide-react";
-import React from "react";
 
 // ---- Data ----
 const DEFAULT_SOLUTIONS = [
-  {
-    key: "it-solutions",
-    title: "IT Solutions",
-    blurb: "Comprehensive technology services for business growth.",
-    icon: <Laptop2 className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "it-support",
-    title: "IT Support",
-    blurb: "Proactive, friendly technical support when it matters.",
-    icon: <Wrench className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "networking",
-    title: "Networking",
-    blurb: "Scalable, secure network infrastructure end‑to‑end.",
-    icon: <Globe2 className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "wifi",
-    title: "WiFi Solutions",
-    blurb: "Enterprise‑grade wireless with site surveying and tuning.",
-    icon: <Wifi className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "consultancy",
-    title: "Consultancy",
-    blurb: "Strategic IT advisory aligned to your roadmap.",
-    icon: <Target className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "network-design",
-    title: "Network Design",
-    blurb: "Custom architectures optimized for performance.",
-    icon: <Network className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "servers-storage",
-    title: "Servers & Storage",
-    blurb: "Secure, reliable platforms engineered for uptime.",
-    icon: <Server className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "cctv",
-    title: "CCTV Systems",
-    blurb: "Smart surveillance, monitoring, and retention.",
-    icon: <Camera className="h-6 w-6" aria-hidden />,
-  },
-  {
-    key: "open-source",
-    title: "Open‑Source Solutions",
-    blurb: "Cost‑effective and flexible systems without lock‑in.",
-    icon: <LockKeyhole className="h-6 w-6" aria-hidden />,
-  },
+  { key: "it-solutions", title: "IT Solutions", blurb: "Comprehensive technology services for business growth.", icon: <Laptop2 className="h-6 w-6" aria-hidden /> },
+  { key: "it-support", title: "IT Support", blurb: "Proactive, friendly technical support when it matters.", icon: <Wrench className="h-6 w-6" aria-hidden /> },
+  { key: "networking", title: "Networking", blurb: "Scalable, secure network infrastructure end-to-end.", icon: <Globe2 className="h-6 w-6" aria-hidden /> },
+  { key: "wifi", title: "WiFi Solutions", blurb: "Enterprise-grade wireless with site surveying and tuning.", icon: <Wifi className="h-6 w-6" aria-hidden /> },
+  { key: "consultancy", title: "Consultancy", blurb: "Strategic IT advisory aligned to your roadmap.", icon: <Target className="h-6 w-6" aria-hidden /> },
+  { key: "network-design", title: "Network Design", blurb: "Custom architectures optimized for performance.", icon: <Network className="h-6 w-6" aria-hidden /> },
+  { key: "servers-storage", title: "Servers & Storage", blurb: "Secure, reliable platforms engineered for uptime.", icon: <Server className="h-6 w-6" aria-hidden /> },
+  { key: "cctv", title: "CCTV Systems", blurb: "Smart surveillance, monitoring, and retention.", icon: <Camera className="h-6 w-6" aria-hidden /> },
+  { key: "open-source", title: "Open-Source Solutions", blurb: "Cost-effective and flexible systems without lock-in.", icon: <LockKeyhole className="h-6 w-6" aria-hidden /> },
 ];
 
 // ---- Utilities ----
@@ -143,22 +99,59 @@ function SolutionCard({ item, onClick }) {
 export default function OurSolutions({
   id = "our-solutions",
   heading = "Our Solutions",
-  subheading = "What we deliver end‑to‑end",
+  subheading = "What we deliver end-to-end",
   items = DEFAULT_SOLUTIONS,
   onCardClick,
   className,
 }) {
+  const videoRef = useRef(null);
+  const containerRef = useRef(null);
+
+  // Play/pause video based on visibility (battery friendly)
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) videoRef.current?.play?.().catch(() => {});
+          else videoRef.current?.pause?.();
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section
       id={id}
+      ref={containerRef}
       className={cn(
         "relative isolate overflow-hidden",
         "py-16 sm:py-20 lg:py-24",
-        "bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950",
         className
       )}
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0">
+      {/* Full-bleed background video */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 -z-30 h-full w-full object-cover pointer-events-none"
+        src={VID2}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+      />
+      {/* Dark scrim for contrast */}
+      <div className="absolute inset-0 -z-20 bg-slate-950/70" />
+
+      {/* Decorative overlays kept above scrim but below content */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(60%_30%_at_50%_0%,rgba(14,165,233,0.25),transparent_60%)]" />
         <div className="absolute inset-0 [mask-image:radial-gradient(70%_50%_at_50%_30%,black,transparent)]">
           <svg className="h-full w-full opacity-[0.09]" xmlns="http://www.w3.org/2000/svg">
@@ -174,6 +167,7 @@ export default function OurSolutions({
         <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-indigo-500/20 blur-3xl" />
       </div>
 
+      {/* Content */}
       <div className="container mx-auto px-4 relative">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80">
