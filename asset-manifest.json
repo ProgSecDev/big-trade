@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/big-trade/static/css/main.1bc1c2e5.css",
-    "main.js": "/big-trade/static/js/main.037fee34.js",
+    "main.css": "/big-trade/static/css/main.ed7a949c.css",
+    "main.js": "/big-trade/static/js/main.992dceae.js",
     "static/js/453.8bae539f.chunk.js": "/big-trade/static/js/453.8bae539f.chunk.js",
+    "static/media/VID-1.mp4": "/big-trade/static/media/VID-1.e807086fd262d4d2d47c.mp4",
+    "static/media/VID-2.mp4": "/big-trade/static/media/VID-2.baa0edfa5123557c9d32.mp4",
     "static/media/Aldhabi.ttf": "/big-trade/static/media/Aldhabi.28f9841a4f2619850400.ttf",
     "static/media/bannerBG.jpg": "/big-trade/static/media/bannerBG.87d63ca62c0be117a99e.jpg",
     "static/media/SilverForteGrunge.ttf": "/big-trade/static/media/SilverForteGrunge.c7bfd8bbdbc87420ae74.ttf",
     "static/media/LogoNoBG.png": "/big-trade/static/media/LogoNoBG.b678bb0f7e6a1b87daf5.png",
     "index.html": "/big-trade/index.html",
-    "main.1bc1c2e5.css.map": "/big-trade/static/css/main.1bc1c2e5.css.map",
-    "main.037fee34.js.map": "/big-trade/static/js/main.037fee34.js.map",
+    "main.ed7a949c.css.map": "/big-trade/static/css/main.ed7a949c.css.map",
+    "main.992dceae.js.map": "/big-trade/static/js/main.992dceae.js.map",
     "453.8bae539f.chunk.js.map": "/big-trade/static/js/453.8bae539f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1bc1c2e5.css",
-    "static/js/main.037fee34.js"
+    "static/css/main.ed7a949c.css",
+    "static/js/main.992dceae.js"
   ]
 }
