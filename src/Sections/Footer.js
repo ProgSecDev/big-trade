@@ -1,134 +1,102 @@
+// src/components/FooterCTA.jsx
 import React from "react";
-import logo from "../assets/Logos and Favicons/logo.png";
-import facebookicon from "../assets/Logos and Favicons/facebook.png";
-import instagramicon from "../assets/Logos and Favicons/instagram.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMapMarkerAlt,
-  faPhone,
-  faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
+import { motion, useReducedMotion } from "framer-motion";
+import { Mail } from "lucide-react";
 
-function Footer() {
+function cn(...xs) {
+  return xs.filter(Boolean).join(" ");
+}
+
+export default function FooterCTA({
+  heading = "Get In Touch",
+  ctaTitle = "Ready to transform your IT infrastructure?",
+  ctaSubtitle = "Contact us to discuss your technology needs.",
+  email = "info@tech-bridgegroup.com",
+  tagline = "Innovate, Connect, Build",
+  className,
+}) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <footer className="relative min-h-[33vh] flex flex-col">
-      <div
-        className="bg-zinc-900 flex items-center justify-center"
-        style={{ height: "33%" }}
-      >
-        <div className="text-white text-center bg-black p-4 w-80 mt-5 ml-5 shadow-lg">
-          <h1
-            className="text-3xl font-semibold"
-            style={{ fontFamily: "Bookman Old Style, serif" }}
-          >
-            Get in Touch
-          </h1>
-        </div>
+    <footer
+      className={cn(
+        "relative isolate overflow-hidden",
+        // Section spacing
+        "py-20 sm:py-28",
+        // Background (dark gradient + diagonal cut)
+        "bg-slate-950",
+        className
+      )}
+    >
+      {/* big soft gradient background */}
+      <div aria-hidden className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_0%,rgba(14,165,233,0.18),transparent_60%)]" />
+        {/* diagonal overlay */}
+        <div className="absolute right-[-10%] top-[35%] h-[55%] w-[70%] rotate-45 bg-slate-900" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-screen bg-[#C5713A]">
-        {/* Logo Column */}
-        <div className="flex flex-col items-center justify-center -translate-y-10">
-          <img src={logo} alt="Logo" className="w-80 h-auto" />
-          <div className="text-white text-sm -mt-4 text-center -translate-y-12">
-            © {new Date().getFullYear()} Designed By admirelb. All rights
-            reserved.
-          </div>
+
+      <div className="relative container mx-auto px-4">
+        {/* Heading */}
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-teal-300">{heading}</h2>
+          <div className="mx-auto mt-3 h-1 w-40 rounded-full bg-teal-400" />
         </div>
 
-        {/* Form Column */}
-        <div className="flex items-center justify-center">
-          <div className="w-80 max-w-xs bg-black p-4 ml-1 shadow-lg -translate-y-7">
-            <form
-              action="https://fabform.io/f/{form-id}"
-              method="post"
-              className="space-y-6 w-full"
-            >
-              <input
-                className="w-full p-2 rounded border-b border-dashed bg-black text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-500"
-                type="text"
-                placeholder="Name"
-                name="name"
-              />
-              <input
-                className="w-full p-2 rounded bg-black border-b border-dashed text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-500"
-                type="email"
-                placeholder="Email"
-                name="email"
-              />
-              <input
-                className="w-full p-2 rounded bg-black border-b border-dashed text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-500"
-                type="text"
-                placeholder="Message"
-                name="_subject"
-              />
-              <div className="flex justify-center">
-                <button className="border-orange-500 border text-white hover:bg-orange-700 py-2 px-4 rounded-md shadow-md transition duration-300">
-                  SEND MESSAGE
-                </button>
-              </div>
-            </form>
+        {/* Glass CTA card */}
+        <motion.div
+          initial={!prefersReducedMotion ? { opacity: 0, y: 16 } : undefined}
+          whileInView={!prefersReducedMotion ? { opacity: 1, y: 0 } : undefined}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className={cn(
+            "mx-auto mt-12 max-w-4xl rounded-[28px] p-[2px]",
+            // Glow border
+            "bg-gradient-to-br from-teal-400/60 via-cyan-400/30 to-teal-500/60"
+          )}
+        >
+          <div
+            className={cn(
+              "rounded-[26px] bg-slate-900/80 backdrop-blur-xl ring-1 ring-white/10",
+              "px-6 py-12 sm:px-10 sm:py-14 text-center"
+            )}
+          >
+            <p className="text-xl sm:text-2xl font-semibold text-white">
+              {ctaTitle}
+            </p>
+            <p className="mt-2 text-base text-white/70">{ctaSubtitle}</p>
+
+            <div className="mt-5 inline-flex items-center gap-2 text-teal-300">
+              <Mail className="h-5 w-5" aria-hidden />
+              <a
+                href={`mailto:${email}`}
+                className="text-lg underline decoration-teal-400/40 underline-offset-4 transition hover:text-teal-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/60 rounded"
+              >
+                {email}
+              </a>
+            </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Location Column */}
-        <div className="flex flex-col items-start justify-start p-4 text-white text-sm space-y-4">
-          <a
-            href="https://www.google.com/maps/place/Khaldeh,+Lebanon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 hover:underline"
-          >
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="text-xl" />
-            <span className="text-lg font-semibold">Naameh, Lebanon</span>
-          </a>
+        {/* Tagline */}
+        <p className="relative mt-10 text-center text-xl text-teal-300">
+          {tagline}
+        </p>
 
-          <a
-            href="https://wa.me/96103730627"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 hover:underline"
-          >
-            <FontAwesomeIcon icon={faPhone} className="text-xl" />
-            <span className="text-lg">+961 03 730 627</span>
-          </a>
-
-          <a
-            href="mailto:info@spicyfoodlb.com"
-            className="flex items-center space-x-2 hover:underline"
-          >
-            <FontAwesomeIcon icon={faEnvelope} className="text-xl" />
-            <span className="text-lg font-semibold">info@spicyfoodlb.com</span>
-          </a>
-
-          {/* Social Media Icons */}
-          <div className="flex space-x-4 mt-4">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={facebookicon}
-                alt="Facebook"
-                className="w-8 h-8 hover:scale-110"
-              />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={instagramicon}
-                alt="Instagram"
-                className="w-8 h-8 hover:scale-110"
-              />
-            </a>
-          </div>
+        {/* Bottom bar */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row">
+          <p>© {new Date().getFullYear()} Tech Bridge Group. All rights reserved.</p>
+          <nav className="flex items-center gap-4">
+            <a className="hover:text-white/80" href="#privacy">Privacy</a>
+            <span aria-hidden>•</span>
+            <a className="hover:text-white/80" href="#terms">Terms</a>
+            <span aria-hidden>•</span>
+            <a className="hover:text-white/80" href="#contact">Contact</a>
+          </nav>
         </div>
       </div>
     </footer>
   );
 }
 
-export default Footer;
+// Usage:
+// <FooterCTA email="info@tech-bridgegroup.com" />

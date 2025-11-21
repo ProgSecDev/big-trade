@@ -5,15 +5,11 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import { Element, scroller } from "react-scroll";
+import { scroller } from "react-scroll";
 
 import Nav from "./Components/Nav";
 import "./App.css";
-import Home from "./Sections/Home";
-import Product from "./Sections/Product";
-import Story from "./Sections/AboutUs";
-import Footer from "./Sections/Footer";
-import SpicyPage from "./Sections/SpicyPage";
+import BigTradePage from "./Sections/BigTradePage";
 
 const AppContent = () => {
   const location = useLocation();
@@ -34,8 +30,8 @@ const AppContent = () => {
 
       {/* Routes */}
       <Routes>
-        <Route path="/" element={<SpicyPage />} />
-        <Route path="/spicy" element={<SpicyPage />} />
+        <Route path="/" element={<BigTradePage />} />
+        <Route path="/bigtrade" element={<BigTradePage />} />
       </Routes>
 
     </>

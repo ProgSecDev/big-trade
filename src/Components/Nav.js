@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { scroller } from "react-scroll";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/Logos and Favicons/logo.png";
+import logo from "../assets/Logos and Favicons/LogoNoBG.png";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -115,7 +115,7 @@ function Nav() {
           <div className="relative group px-4 py-2 cursor-pointer">
             <div
               className="hover:text-cyan-500 whitespace-nowrap"
-              onClick={() => scrollToSection("product")}
+              onClick={() => scrollToSection("mission")}
             >
               Our Missions
             </div>
@@ -143,13 +143,13 @@ function Nav() {
         >
           <div
               className="hover:text-cyan-500 whitespace-nowrap"
-              onClick={() => scrollToSection("product")}
+              onClick={() => scrollToSection("vision")}
             >
               Our Vision
             </div>
           <div
               className="hover:text-cyan-500 whitespace-nowrap"
-              onClick={() => scrollToSection("product")}
+              onClick={() => scrollToSection("solutions")}
             >
               Our Solutions
             </div>
