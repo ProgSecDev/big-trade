@@ -1,3 +1,4 @@
+// src/pages/Home.js
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -9,24 +10,22 @@ function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="relative flex h-screen overflow-hidden min-h-screen justify-center items-center" id="home">
-      {/* Background Carousel */}
+    <div
+      id="home"
+      className="relative flex h-screen min-h-screen items-center justify-center overflow-hidden"
+    >
       <Carousel
         autoPlay
         infiniteLoop
         showThumbs={false}
         showStatus={false}
         showArrows={false}
-        // interval={5000}
-        // transitionTime={2000}
         className="absolute inset-0"
         renderThumbs={() => null}
       >
@@ -43,14 +42,18 @@ function Home() {
         ))}
       </Carousel>
 
-      {/* Black overlay */}
-      <div className="absolute inset-0 bg-black opacity-20"></div>
+      {/* overlay */}
+      <div className="absolute inset-0 bg-black opacity-20" />
 
-      {/* Logo on background */}
-      <div
-        className={`home-logo-container`}
-      >
-        <img src={logo} alt="Logo" className="home-logo-image" />
+      {/* logo */}
+      <div className="home-logo-container">
+        <img
+          src={logo}
+          alt="Tech Bridge"
+          className="home-logo-image"
+          draggable="false"
+          decoding="async"
+        />
       </div>
     </div>
   );

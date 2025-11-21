@@ -1,12 +1,33 @@
-/* Logo animation effect */
+/* src/Style/Home.css */
+
+/* center the logo and raise above overlays */
 .home-logo-container {
-  position: absolute;
-  left: 50%;
-  z-index: 50;
-  pointer-events: none;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* avoid accidental size inheritance */
+  max-width: 100%;
 }
 
+/* keep aspect ratio; scale nicely on phones */
 .home-logo-image {
-  height: 460px;
-  transform: translateX(-50%);
+  width: clamp(160px, 45vw, 320px); /* responsive width */
+  max-width: 90vw;
+  height: auto;                     /* critical: no fixed height */
+  object-fit: contain;              /* why: never distort on narrow viewports */
+  display: block;
+  /* optional visual crispness on iOS */
+  image-rendering: -webkit-optimize-contrast;
 }
+
+/* very small phones */
+@media (max-width: 480px) {
+  .home-logo-image {
+    width: min(70vw, 260px);
+  }
+}
+
+/* guard: if anything else forces height on images, neutralize here */
+.home-logo-container img { max-height: 70vh; }
