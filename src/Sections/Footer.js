@@ -21,25 +21,28 @@ export default function FooterCTA({
     <footer
       className={cn(
         "relative isolate overflow-hidden",
-        // Section spacing
-        "py-20 sm:py-28",
-        // Background (dark gradient + diagonal cut)
-        "bg-slate-950",
+        // tighter vertical spacing
+        "pt-16 pb-10 sm:pt-20 sm:pb-12",
+        "bg-[#08121c]",
         className
       )}
     >
-      {/* big soft gradient background */}
-      <div aria-hidden className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_0%,rgba(14,165,233,0.18),transparent_60%)]" />
-        {/* diagonal overlay */}
-        <div className="absolute right-[-10%] top-[35%] h-[55%] w-[70%] rotate-45 bg-slate-900" />
+      {/* Background (Mission parity) */}
+      <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(60rem 60rem at 10% 10%, rgba(0, 213, 255, 0.15), transparent 60%), radial-gradient(40rem 40rem at 85% 30%, rgba(0, 255, 170, 0.10), transparent 60%), linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6))",
+          }}
+        />
       </div>
 
       <div className="relative container mx-auto px-4">
-        {/* Heading */}
         <div className="text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-teal-300">{heading}</h2>
-          <div className="mx-auto mt-3 h-1 w-40 rounded-full bg-teal-400" />
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            {heading}
+          </h2>
         </div>
 
         {/* Glass CTA card */}
@@ -49,8 +52,7 @@ export default function FooterCTA({
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className={cn(
-            "mx-auto mt-12 max-w-4xl rounded-[28px] p-[2px]",
-            // Glow border
+            "mx-auto mt-10 max-w-4xl rounded-[28px] p-[2px]", // mt-12 -> mt-10
             "bg-gradient-to-br from-teal-400/60 via-cyan-400/30 to-teal-500/60"
           )}
         >
@@ -78,12 +80,12 @@ export default function FooterCTA({
         </motion.div>
 
         {/* Tagline */}
-        <p className="relative mt-10 text-center text-xl text-teal-300">
+        <p className="relative mt-6 text-center text-xl text-teal-300">
           {tagline}
         </p>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs text-white/50 sm:flex-row">
           <p>© {new Date().getFullYear()} Tech Bridge Group. All rights reserved.</p>
           <nav className="flex items-center gap-4">
             <a className="hover:text-white/80" href="#privacy">Privacy</a>
@@ -97,6 +99,3 @@ export default function FooterCTA({
     </footer>
   );
 }
-
-// Usage:
-// <FooterCTA email="info@tech-bridgegroup.com" />

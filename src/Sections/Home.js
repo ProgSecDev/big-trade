@@ -1,18 +1,14 @@
 // src/pages/Home.js
-import React, { useState, useEffect } from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import backgroundImage from "../assets/Banners/bannerBG.jpg";
-import logo from "../assets/Logos and Favicons/LogoNoBG.png";
+import React, { useRef, useEffect } from "react";
 import "../Style/Home.css";
+import VID1 from "../assets/Vids/VID-1.mp4";
 
 function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Why: some mobile browsers require an explicit play call even with muted+autoplay
+    videoRef.current?.play?.().catch(() => {});
   }, []);
 
   return (
@@ -20,41 +16,22 @@ function Home() {
       id="home"
       className="relative flex h-screen min-h-screen items-center justify-center overflow-hidden"
     >
-      <Carousel
+      {/* Background video */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 -z-10 h-full w-full object-cover pointer-events-none"
+        src={VID1}
         autoPlay
-        infiniteLoop
-        showThumbs={false}
-        showStatus={false}
-        showArrows={false}
-        className="absolute inset-0"
-        renderThumbs={() => null}
-      >
-        {[backgroundImage].map((bg, idx) => (
-          <div
-            key={idx}
-            style={{
-              backgroundImage: `url(${bg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              height: "100vh",
-            }}
-          />
-        ))}
-      </Carousel>
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+      />
 
-      {/* overlay */}
+      {/* overlay (keeps text legible over bright frames) */}
       <div className="absolute inset-0 bg-black opacity-20" />
 
-      {/* logo */}
-      <div className="home-logo-container">
-        <img
-          src={logo}
-          alt="Tech Bridge"
-          className="home-logo-image"
-          draggable="false"
-          decoding="async"
-        />
-      </div>
+      {/* Add any foreground hero content here */}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /**
- * Vision section — left-aligned like the reference (no side image).
+ * Vision section — uses the same background as Mission.
  */
 const VisionSection = ({ className = "" }) => {
   return (
@@ -17,20 +17,18 @@ const VisionSection = ({ className = "" }) => {
       ].join(" ")}
       aria-label="Our Vision"
     >
-      {/* background glow */}
+      {/* Background identical to Mission (why: exact visual parity) */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(60rem 60rem at 85% 15%, rgba(0, 213, 255, 0.15), transparent 60%), radial-gradient(40rem 40rem at 10% 40%, rgba(0, 255, 170, 0.10), transparent 60%), linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6))",
+            "radial-gradient(60rem 60rem at 10% 10%, rgba(0, 213, 255, 0.15), transparent 60%), radial-gradient(40rem 40rem at 85% 30%, rgba(0, 255, 170, 0.10), transparent 60%), linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6))",
         }}
       />
 
       <div className="mx-auto max-w-7xl">
-        {/* Top label: icon + text (left) */}
         <div className="mb-6 flex items-center gap-3">
-          {/* simple chip icon */}
           <svg
             className="h-6 w-6 text-cyan-300"
             viewBox="0 0 24 24"
@@ -46,7 +44,6 @@ const VisionSection = ({ className = "" }) => {
           </span>
         </div>
 
-        {/* Headline */}
         <h2 className="text-left text-4xl font-extrabold leading-tight sm:text-5xl">
           <span className="block text-white/95">Communication and</span>
           <span
@@ -62,12 +59,10 @@ const VisionSection = ({ className = "" }) => {
           </span>
         </h2>
 
-        {/* Capsule paragraph */}
         <div className="mt-10 max-w-3xl rounded-[2.5rem] border border-cyan-500/40 bg-white/5 p-6 sm:p-8 shadow-[0_0_40px_rgba(0,255,255,0.15)]">
           <p className="text-sm leading-relaxed text-white/85">
-            TO BRIDGE THE GAP BETWEEN TECHNOLOGY AND BUSINESS BY DELIVERING
-            RELIABLE, SCALABLE, AND AFFORDABLE IT SOLUTIONS — EMPOWERING
-            COMPANIES TO OPERATE SMARTER, SAFER, AND MORE EFFICIENTLY.
+            TO REDEFINE HOW COMPANIES EXPERIENCE TECHNOLOGY — WHERE IT BECOMES 
+            SIMPLE, DEPENDABLE, AND A DRIVER FOR LONG-TERM GROWTH.
           </p>
         </div>
       </div>

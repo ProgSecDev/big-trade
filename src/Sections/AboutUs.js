@@ -1,6 +1,6 @@
 // src/sections/AboutTechBridge.jsx
 import React, { useEffect, useRef } from "react";
-import VID1 from "../assets/Vids/VID-1.mp4"; // ensure this path/file exists
+import VID1 from "../assets/Vids/VID-1.mp4";
 
 export default function AboutTechBridge() {
   const sectionRef = useRef(null);
@@ -14,8 +14,7 @@ export default function AboutTechBridge() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Why: iOS/Android require muted+inline; ignore failed play Promises.
-            videoRef.current?.play?.().catch(() => {});
+            videoRef.current?.play?.().catch(() => {}); // Why: ignore autoplay promise failures on mobile
             el.classList.remove("opacity-0", "translate-y-4");
             el.classList.add("opacity-100", "translate-y-0");
           } else {
@@ -32,13 +31,11 @@ export default function AboutTechBridge() {
 
   return (
     <section className="relative overflow-hidden min-h-[60vh]">
-      {/* Full-bleed background video (entire section) */}
+      {/* Full-bleed background video */}
       <video
         ref={videoRef}
         className="absolute inset-0 -z-10 h-full w-full object-cover pointer-events-none"
         src={VID1}
-        // Add a .webm for better compression if you have it:
-        // <source src={VID1_WEBM} type="video/webm" />
         autoPlay
         muted
         loop
@@ -55,17 +52,10 @@ export default function AboutTechBridge() {
           ref={sectionRef}
           className="transform-gpu opacity-0 translate-y-4 transition-all duration-700 ease-out"
         >
-          <h2
-            className="text-center font-extrabold tracking-tight text-[clamp(28px,5vw,48px)]"
-            style={{ color: "#49dcc1" }}
-          >
+          {/* Title styled like Solutions.js (no bottom line) */}
+          <h2 className="text-center text-3xl sm:text-4xl font-bold tracking-tight text-white">
             About TechBridge Group
           </h2>
-
-          <div
-            className="mx-auto mt-4 h-1 w-40 rounded-sm"
-            style={{ backgroundColor: "#49dcc1" }}
-          />
 
           <p className="mx-auto mt-10 max-w-4xl text-[17px] leading-8 text-slate-200">
             TechBridge Group bridges the gap between technology challenges and

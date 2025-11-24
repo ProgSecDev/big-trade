@@ -1,32 +1,27 @@
+// src/components/Nav.js
 import React, { useState, useEffect } from "react";
 import { scroller } from "react-scroll";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/Logos and Favicons/LogoNoBG.png";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [navbarBg, setNavbarBg] = useState("#182b38");
-  const [textColor, setTextColor] = useState("text-white");
-  const [textFont, setTextFont] = useState("text-3xl");
-  const [logoSize, setLogoSize] = useState("h-40");
   const [isScreenMinimized, setIsScreenMinimized] = useState(false);
+
+  const TEXT_FONT = "text-xl"; // fixed menu text size
+  const LOGO_HEIGHT = "h-32";  // fixed logo height
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => setIsMenuOpen((s) => !s);
 
   const changeNavbarBg = () => {
     if (window.scrollY >= 50) {
       setNavbarBg("rgba(24, 43, 56, 1)");
-      setTextColor("text-white");
-      setTextFont("text-1xl");
-      setLogoSize("h-32");
     } else {
       setNavbarBg("#182b38");
-      setTextColor("text-white");
-      setTextFont("text-2xl");
-      setLogoSize("h-40");
     }
   };
 
@@ -36,7 +31,6 @@ function Nav() {
     window.addEventListener("scroll", changeNavbarBg);
     window.addEventListener("resize", handleResize);
     handleResize();
-
     return () => {
       window.removeEventListener("scroll", changeNavbarBg);
       window.removeEventListener("resize", handleResize);
@@ -52,114 +46,98 @@ function Nav() {
     setIsMenuOpen(false);
   };
 
-//   const handlePrivateLabelClick = () => {
-//   if (location.pathname === "/" || location.pathname === "/spicy") {
-//     scrollToSection("labels");
-//   } else {
-//     navigate("/");
-//     setTimeout(() => {
-//       scrollToSection("labels");
-//     }, 300);
-//   }
-// };
-
   return (
     <nav
-      className={`navbar p-4 ${textColor} fixed top-0 w-full z-30 transition-colors duration-500 ease-in-out`}
+      className={`navbar h-20 px-4 ${"text-white"} fixed top-0 w-full z-30 transition-colors duration-500 ease-in-out`}
       style={{ backgroundColor: navbarBg }}
     >
       <div
-        className="container mx-auto flex flex-col lg:flex-row justify-between items-center relative"
+        className="container mx-auto flex h-full items-center relative"
         style={{ fontFamily: "Bookman Old Style, serif", fontWeight: 100 }}
       >
-        <div className="lg:hidden">
-          <button
-            className="text-white focus:outline-none"
-            onClick={toggleMenu}
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
-          </button>
-        </div>
-
-        <div
-          className={`lg:flex lg:space-x-8 lg:mt-0 mt-4 flex flex-col lg:flex-row items-center ${textFont} ${
-            isMenuOpen ? "block" : "hidden"
-          } lg:block lg:justify-center w-full nav-text`}
+        {/* Left: Logo (clickable) */}
+        <button
+          onClick={() => scrollToSection("home")}
+          className="shrink-0 focus:outline-none"
+          aria-label="Go to home"
         >
-          <div
-            className="px-4 py-2 hover:text-cyan-500 cursor-pointer"
-            onClick={() => scrollToSection("home")}
-          >
+          <img
+            src={logo}
+            alt="Tech Bridge Group"
+            className={`${LOGO_HEIGHT} transition duration-300 ease-in-out select-none`}
+            draggable="false"
+            decoding="async"
+          />
+        </button>
+
+        {/* Right-aligned desktop menu (fixed size) */}
+        <ul
+          className={`hidden lg:flex ml-auto justify-end items-center gap-8 ${TEXT_FONT} nav-text`}
+        >
+          <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("home")}>
             Home
-          </div>
-          <div
-            className="px-4 py-2 hover:text-cyan-500 cursor-pointer"
-            onClick={() => scrollToSection("story")}
-          >
+          </li>
+          <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("story")}>
             About us
-          </div>
+          </li>
 
-          <div className="relative group px-4 py-2 cursor-pointer">
-            <div
-              className="hover:text-cyan-500 whitespace-nowrap"
-              onClick={() => scrollToSection("mission")}
-            >
-              Our Missions
+          <li className="relative group px-2 py-2 cursor-pointer whitespace-nowrap">
+            <div className="hover:text-cyan-500" onClick={() => scrollToSection("mission")}>
+              Our Mission
             </div>
-            <div className="absolute hidden group-hover:block mt-2 bg-[#6F6D39] text-white shadow-md rounded-md whitespace-nowrap">
-              {/*<div className="px-4 py-2 hover:bg-[#C5713A] cursor-pointer" onClick={() => scrollToSection("grill")}>Grill Master</div>*/}
-              {/*<div className="px-4 py-2 hover:bg-[#C5713A] cursor-pointer" onClick={() => scrollToSection("spicy")}>Spicy Food</div>*/}
+            <div className="absolute right-0 hidden group-hover:block mt-2 bg-[#6F6D39] text-white shadow-md rounded-md whitespace-nowrap">
+              {/* submenu reserved */}
             </div>
-          </div>
-        </div>
+          </li>
 
-        {!isScreenMinimized && (
-          <div className="absolute left-1/2 transform -translate-x-1/2 mx-1">
-            <img
-              src={logo}
-              alt="Logo"
-              className={`nav-logo ${logoSize} transition duration-300 ease-in-out hidden`}
-            />
+          <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("vision")}>
+            Our Vision
+          </li>
+          <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("solutions")}>
+            Our Solutions
+          </li>
+          <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("footer")}>
+            Contact Us
+          </li>
+        </ul>
+
+        {/* Mobile: hamburger on the right */}
+        <button
+          aria-label="Open menu"
+          aria-expanded={isMenuOpen}
+          className="lg:hidden ml-auto text-white focus:outline-none"
+          onClick={toggleMenu}
+        >
+          <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+
+        {/* Mobile dropdown: right aligned */}
+        {isMenuOpen && (
+          <div className="lg:hidden absolute right-4 top-full mt-3 w-56 rounded-lg shadow-lg bg-[#182b38] border border-white/10">
+            <ul className={`flex flex-col ${TEXT_FONT} nav-text`}>
+              <li className="px-4 py-3 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("home")}>
+                Home
+              </li>
+              <li className="px-4 py-3 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("story")}>
+                About us
+              </li>
+              <li className="px-4 py-3 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("mission")}>
+                Our Mission
+              </li>
+              <li className="px-4 py-3 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("vision")}>
+                Our Vision
+              </li>
+              <li className="px-4 py-3 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("solutions")}>
+                Our Solutions
+              </li>
+              <li className="px-4 py-3 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("footer")}>
+                Contact Us
+              </li>
+            </ul>
           </div>
         )}
-
-        <div
-          className={`lg:flex lg:space-x-8 lg:mt-0 mt-4 flex flex-col lg:flex-row items-center ${textFont} ${
-            isMenuOpen ? "block" : "hidden"
-          } lg:block lg:justify-center w-full nav-text cursor-pointer`}
-        >
-          <div
-              className="hover:text-cyan-500 whitespace-nowrap"
-              onClick={() => scrollToSection("vision")}
-            >
-              Our Vision
-            </div>
-          <div
-              className="hover:text-cyan-500 whitespace-nowrap"
-              onClick={() => scrollToSection("solutions")}
-            >
-              Our Solutions
-            </div>
-          <div
-            className="px-4 py-2 hover:text-cyan-500 cursor-pointer"
-            onClick={() => scrollToSection("footer")}
-          >
-            Contact Us
-          </div>
-        </div>
       </div>
     </nav>
   );
