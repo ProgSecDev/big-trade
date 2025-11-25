@@ -16,7 +16,7 @@ function Home() {
       id="home"
       className="relative flex h-screen min-h-screen items-center justify-center overflow-hidden"
     >
-      {/* Background video */}
+      {/* Background video (decorative) */}
       <video
         ref={videoRef}
         className="absolute inset-0 -z-10 h-full w-full object-cover pointer-events-none"
@@ -25,13 +25,25 @@ function Home() {
         muted
         loop
         playsInline
-        aria-hidden="true"
+        aria-hidden="true" // decorative; avoid SR noise
       />
 
-      {/* overlay (keeps text legible over bright frames) */}
-      <div className="absolute inset-0 bg-black opacity-20" />
+      {/* Overlay to keep text legible over bright frames */}
+      <div className="absolute inset-0 bg-black/30" />
 
-      {/* Add any foreground hero content here */}
+      {/* Foreground hero content */}
+      <div className="relative z-10 px-6">
+        <h1
+          className="
+            text-center font-extrabold tracking-tight
+            text-white drop-shadow-xl
+            text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl
+            leading-tight
+          "
+        >
+          Connecting Ideas. Building Technology. Empowering Growth.
+        </h1>
+      </div>
     </div>
   );
 }

@@ -21,57 +21,55 @@ export default function FooterCTA({
     <footer
       className={cn(
         "relative isolate overflow-hidden",
-        // tighter vertical spacing
-        "pt-16 pb-10 sm:pt-20 sm:pb-12",
-        "bg-[#08121c]",
+        // tighter top/bottom padding
+        "pt-12 pb-4 sm:pt-16 sm:pb-6",
+        "bg-gradient-to-b from-sky-200 via-cyan-200 to-blue-300",
         className
       )}
     >
-      {/* Background (Mission parity) */}
+      {/* Why: subtle depth without adding extra vertical space */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(60rem 60rem at 10% 10%, rgba(0, 213, 255, 0.15), transparent 60%), radial-gradient(40rem 40rem at 85% 30%, rgba(0, 255, 170, 0.10), transparent 60%), linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6))",
-          }}
-        />
+        <div className="absolute -top-20 -left-16 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl" />
+        <div className="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl" />
       </div>
 
       <div className="relative container mx-auto px-4">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             {heading}
           </h2>
         </div>
 
-        {/* Glass CTA card */}
+        {/* CTA card */}
         <motion.div
           initial={!prefersReducedMotion ? { opacity: 0, y: 16 } : undefined}
           whileInView={!prefersReducedMotion ? { opacity: 1, y: 0 } : undefined}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className={cn(
-            "mx-auto mt-10 max-w-4xl rounded-[28px] p-[2px]", // mt-12 -> mt-10
-            "bg-gradient-to-br from-teal-400/60 via-cyan-400/30 to-teal-500/60"
+            "mx-auto mt-6 max-w-4xl rounded-[28px] p-[2px]",
+            "bg-gradient-to-br from-sky-400/70 via-cyan-400/50 to-blue-500/70"
           )}
         >
           <div
             className={cn(
-              "rounded-[26px] bg-slate-900/80 backdrop-blur-xl ring-1 ring-white/10",
-              "px-6 py-12 sm:px-10 sm:py-14 text-center"
+              "rounded-[26px] backdrop-blur-xl",
+              "bg-white/35",
+              "ring-1 ring-sky-900/10 shadow-[0_10px_30px_rgba(14,165,233,0.18)]",
+              // tighter inner padding
+              "px-6 py-8 sm:px-8 sm:py-10 text-center"
             )}
           >
-            <p className="text-xl sm:text-2xl font-semibold text-white">
+            <p className="text-xl sm:text-2xl font-semibold text-slate-900">
               {ctaTitle}
             </p>
-            <p className="mt-2 text-base text-white/70">{ctaSubtitle}</p>
+            <p className="mt-2 text-base text-slate-800">{ctaSubtitle}</p>
 
-            <div className="mt-5 inline-flex items-center gap-2 text-teal-300">
+            <div className="mt-5 inline-flex items-center gap-2 text-sky-800">
               <Mail className="h-5 w-5" aria-hidden />
               <a
                 href={`mailto:${email}`}
-                className="text-lg underline decoration-teal-400/40 underline-offset-4 transition hover:text-teal-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400/60 rounded"
+                className="text-lg text-sky-900 underline decoration-sky-500/60 underline-offset-4 transition hover:text-sky-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600/40 rounded"
               >
                 {email}
               </a>
@@ -80,20 +78,13 @@ export default function FooterCTA({
         </motion.div>
 
         {/* Tagline */}
-        <p className="relative mt-6 text-center text-xl text-teal-300">
+        <p className="relative mt-3 text-center text-xl text-sky-900">
           {tagline}
         </p>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs text-white/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} Tech Bridge Group. All rights reserved.</p>
-          <nav className="flex items-center gap-4">
-            <a className="hover:text-white/80" href="#privacy">Privacy</a>
-            <span aria-hidden>•</span>
-            <a className="hover:text-white/80" href="#terms">Terms</a>
-            <span aria-hidden>•</span>
-            <a className="hover:text-white/80" href="#contact">Contact</a>
-          </nav>
+        <div className="mt-3 flex flex-col items-center justify-between gap-3 border-t border-slate-400/60 pt-2 text-xs text-slate-800 sm:flex-row">
+          <p className="mb-0">© {new Date().getFullYear()} Tech Bridge Group. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -12,7 +12,6 @@ import {
   Server,
   Camera,
   LockKeyhole,
-  ChevronRight,
   Cpu,
 } from "lucide-react";
 
@@ -34,22 +33,20 @@ function cn(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-// ---- Card ----
-function SolutionCard({ item, onClick }) {
+// ---- Card (non-clickable, keeps hover bounce) ----
+function SolutionCard({ item }) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <motion.button
-      type="button"
-      onClick={() => onClick?.(item.key)}
+    <motion.div
+      role="group" // keep group-hover styles
       whileHover={!prefersReducedMotion ? { y: -4 } : undefined}
-      whileTap={!prefersReducedMotion ? { scale: 0.98 } : undefined}
       className={cn(
-        "group relative w-full rounded-2xl p-[1px] text-left focus:outline-none",
-        "bg-gradient-to-br from-cyan-400/50 via-sky-500/30 to-indigo-500/40",
-        "focus-visible:ring-4 focus-visible:ring-cyan-400/30"
+        "group relative w-full rounded-2xl p-[1px] text-left",
+        "bg-gradient-to-br from-cyan-400/50 via-sky-500/30 to-indigo-500/40"
       )}
       aria-label={`${item.title}: ${item.blurb}`}
+      tabIndex={-1} // non-interactive
     >
       <div
         className={cn(
@@ -67,7 +64,6 @@ function SolutionCard({ item, onClick }) {
               "ring-1 ring-white/10"
             )}
           >
-            {/* Why: consistent icon sizing */}
             <div className="text-cyan-300 group-hover:text-cyan-200 transition-colors">
               {item.icon}
             </div>
@@ -75,10 +71,6 @@ function SolutionCard({ item, onClick }) {
           <h3 className="text-base sm:text-lg font-semibold tracking-tight text-white">
             {item.title}
           </h3>
-          <ChevronRight
-            className="ml-auto h-5 w-5 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 text-white/70"
-            aria-hidden
-          />
         </div>
         <p className="text-sm text-white/75 leading-relaxed">{item.blurb}</p>
       </div>
@@ -91,7 +83,7 @@ function SolutionCard({ item, onClick }) {
           "bg-gradient-to-br from-cyan-500/30 via-sky-500/20 to-indigo-500/30"
         )}
       />
-    </motion.button>
+    </motion.div>
   );
 }
 
@@ -101,17 +93,14 @@ export default function OurSolutions({
   heading = "Our Solutions",
   subheading = "What we deliver end-to-end",
   items = DEFAULT_SOLUTIONS,
-  onCardClick,
   className,
 }) {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Play/pause video based on visibility (battery friendly)
   useEffect(() => {
     const root = containerRef.current;
     if (!root) return;
-
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -121,7 +110,6 @@ export default function OurSolutions({
       },
       { threshold: 0.15 }
     );
-
     io.observe(root);
     return () => io.disconnect();
   }, []);
@@ -150,7 +138,7 @@ export default function OurSolutions({
       {/* Dark scrim for contrast */}
       <div className="absolute inset-0 -z-20 bg-slate-950/70" />
 
-      {/* Decorative overlays kept above scrim but below content */}
+      {/* Decorative overlays */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(60%_30%_at_50%_0%,rgba(14,165,233,0.25),transparent_60%)]" />
         <div className="absolute inset-0 [mask-image:radial-gradient(70%_50%_at_50%_30%,black,transparent)]">
@@ -180,7 +168,7 @@ export default function OurSolutions({
 
         <div className="mt-10 grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
-            <SolutionCard key={item.key} item={item} onClick={onCardClick} />
+            <SolutionCard key={item.key} item={item} />
           ))}
         </div>
 

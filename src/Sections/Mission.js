@@ -39,14 +39,28 @@ const MissionSection = ({
 
           <p className="mx-auto mt-8 text-[17px] leading-8 text-slate-200">
             TechBridge Group bridges the gap between technology challenges and business opportunities.
-            We provide comprehensive IT solutions — from network design and infrastructure to ongoing
-            support and consultancy — ensuring your technology works as hard as you do.
+            We provide comprehensive IT solutions, from network design and infrastructure to ongoing
+            support and consultancy, and ensuring your technology works as hard as you do.
           </p>
 
-          <ul className="mx-auto mt-6 space-y-3 text-[17px] leading-8 text-slate-200 text-left sm:text-center sm:inline-block">
-            <li>• Tailored IT infrastructure and support</li>
-            <li>• Expertise in networking, virtualization, cloud, and open-source systems</li>
-            <li>• Trusted by organizations across Lebanon and the region</li>
+          {/* Real bullets w/ hanging indent (wrap under first word) */}
+          <ul
+            className="
+              mx-auto mt-6 max-w-3xl
+              list-disc list-outside pl-6
+              space-y-3
+              text-left
+              text-[17px] leading-8 text-slate-200
+              marker:text-slate-300
+            "
+          >
+            <li className="pl-1">Tailored IT infrastructure and support</li>
+            <li className="pl-1">
+              Expertise in networking, virtualization, cloud, and open-source systems
+            </li>
+            <li className="pl-1">
+              Trusted by organizations across Lebanon and the region
+            </li>
           </ul>
         </div>
 
@@ -81,7 +95,7 @@ const MissionSection = ({
             <div className="mt-12 rounded-[2.5rem] border border-cyan-500/40 bg-white/5 p-6 sm:p-8 shadow-[0_0_40px_rgba(0,255,255,0.15)]">
               <p className="text-sm leading-relaxed text-white/85">
                 TO BRIDGE THE GAP BETWEEN TECHNOLOGY AND BUSINESS BY DELIVERING
-                RELIABLE, SCALABLE, AND AFFORDABLE IT SOLUTIONS — EMPOWERING
+                RELIABLE, SCALABLE, AND AFFORDABLE IT SOLUTIONS, EMPOWERING
                 COMPANIES TO OPERATE SMARTER, SAFER, AND MORE EFFICIENTLY.
               </p>
             </div>
@@ -161,7 +175,7 @@ const MissionSection = ({
 
         <div className="mt-10 max-w-3xl rounded-[2.5rem] border border-cyan-500/40 bg-white/5 p-6 sm:p-8 shadow-[0_0_40px_rgba(0,255,255,0.15)]">
           <p className="text-sm leading-relaxed text-white/85">
-            TO REDEFINE HOW COMPANIES EXPERIENCE TECHNOLOGY — WHERE IT BECOMES
+            TO REDEFINE HOW COMPANIES EXPERIENCE TECHNOLOGY, WHERE IT BECOMES
             SIMPLE, DEPENDABLE, AND A DRIVER FOR LONG-TERM GROWTH.
           </p>
         </div>
