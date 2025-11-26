@@ -20,7 +20,7 @@ const MissionSection = ({
       ].join(" ")}
       aria-label="About, Mission and Vision"
     >
-      {/* Shared background */}
+      {/* Why: subtle background texture for depth without new DOM structure */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -31,19 +31,19 @@ const MissionSection = ({
       />
 
       <div className="mx-auto max-w-7xl">
-        {/* ====== ABOUT US (merged at top) ====== */}
+        {/* ====== ABOUT US ====== */}
         <div id="story" className="mx-auto max-w-4xl text-center">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
             About TechBridge Group
           </h2>
 
-          <p className="mx-auto mt-8 text-[17px] leading-8 text-slate-200">
+          <p className="mx-auto mt-8 text-[17px] leading-8 text-slate-200 text-left">
             TechBridge Group bridges the gap between technology challenges and business opportunities.
             We provide comprehensive IT solutions, from network design and infrastructure to ongoing
             support and consultancy, and ensuring your technology works as hard as you do.
           </p>
 
-          {/* Real bullets w/ hanging indent (wrap under first word) */}
+          {/* Real bullets w/ hanging indent */}
           <ul
             className="
               mx-auto mt-6 max-w-3xl
@@ -69,6 +69,21 @@ const MissionSection = ({
 
         {/* ====== MISSION ====== */}
         <div id="mission" className="mb-8 flex items-center gap-3">
+          {/* same icon as 'OUR VISION' */}
+          <svg
+            className="h-6 w-6 text-cyan-300"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
+            <path
+              d="M12 1v4M12 19v4M1 12h4M19 12h4M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
           <span className="text-sm font-semibold tracking-[0.2em] text-cyan-300">
             OUR MISSION
           </span>
@@ -137,7 +152,7 @@ const MissionSection = ({
         {/* Spacer */}
         <div className="mt-20 md:mt-24" />
 
-        {/* ====== VISION (already merged) ====== */}
+        {/* ====== VISION ====== */}
         <div id="vision" className="mb-6 flex items-center gap-3">
           <svg
             className="h-6 w-6 text-cyan-300"
