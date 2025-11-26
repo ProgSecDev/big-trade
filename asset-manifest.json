@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/big-trade/static/css/main.5ed47ce4.css",
-    "main.js": "/big-trade/static/js/main.da6fbe7f.js",
+    "main.js": "/big-trade/static/js/main.79a85622.js",
     "static/js/453.8bae539f.chunk.js": "/big-trade/static/js/453.8bae539f.chunk.js",
     "static/media/VID-1.mp4": "/big-trade/static/media/VID-1.e807086fd262d4d2d47c.mp4",
     "static/media/VID-2.mp4": "/big-trade/static/media/VID-2.baa0edfa5123557c9d32.mp4",
@@ -10,11 +10,11 @@
     "static/media/LogoNoBG.png": "/big-trade/static/media/LogoNoBG.b678bb0f7e6a1b87daf5.png",
     "index.html": "/big-trade/index.html",
     "main.5ed47ce4.css.map": "/big-trade/static/css/main.5ed47ce4.css.map",
-    "main.da6fbe7f.js.map": "/big-trade/static/js/main.da6fbe7f.js.map",
+    "main.79a85622.js.map": "/big-trade/static/js/main.79a85622.js.map",
     "453.8bae539f.chunk.js.map": "/big-trade/static/js/453.8bae539f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5ed47ce4.css",
-    "static/js/main.da6fbe7f.js"
+    "static/js/main.79a85622.js"
   ]
 }
