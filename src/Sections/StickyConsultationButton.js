@@ -1,26 +1,50 @@
-// src/components/StickyConsultationButton.jsx
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /**
  * Floating CTA button that matches Footer gradient and opens an email client.
- *
- * Why: Using a <button> for keyboard semantics and to control focus styles,
- * while invoking a mailto: keeps it accessible and consistent across browsers.
+ * Why: IntersectionObserver avoids scroll handlers; efficient + accessible.
  */
 export default function StickyConsultationButton({
   label = "Book Your Free Consultation",
   email = "info@tech-bridgegroup.com",
-  offset = { bottom: "1.25rem", right: "1.25rem" }, // 20px
+  offset = { bottom: "1.25rem", right: "1.25rem" },
   className = "",
+  hideWhenVisibleSelector = "#footer-cta",
+  rootMargin = "0px", // e.g., "0px 0px -20%" to hide earlier
 }) {
+  const [isHidden, setIsHidden] = useState(false);
+  const btnRef = useRef(null);
+
+  useEffect(() => {
+    const target = document.querySelector(hideWhenVisibleSelector);
+    if (!target) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          setIsHidden(e.isIntersecting);
+        }
+      },
+      { root: null, rootMargin, threshold: 0 }
+    );
+
+    obs.observe(target);
+    return () => obs.disconnect();
+  }, [hideWhenVisibleSelector, rootMargin]);
+
   const handleClick = () => {
-    // Why: window.location ensures default mail client without new tab pop blockers.
     window.location.href = `mailto:${email}`;
   };
 
   return (
     <div
-      className="fixed z-50 pointer-events-none"
+      ref={btnRef}
+      className={[
+        "fixed z-50 pointer-events-none",
+        // hide/show transitions
+        "transition-all duration-200 ease-out",
+        isHidden ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0",
+      ].join(" ")}
       style={{ bottom: offset.bottom, right: offset.right }}
     >
       <button
@@ -28,21 +52,16 @@ export default function StickyConsultationButton({
         onClick={handleClick}
         aria-label={label}
         className={[
-          // Layout
           "pointer-events-auto flex items-center justify-center",
           "px-5 py-3 rounded-2xl",
-          // Footer gradient match
           "bg-gradient-to-b from-sky-200 via-cyan-200 to-blue-300",
-          // Depth/outline
           "shadow-lg ring-1 ring-sky-900/10",
-          // Text
           "text-slate-900 font-semibold",
-          // Interactions
           "transition-transform duration-150 ease-out hover:translate-y-[-1px] active:translate-y-0",
-          // Focus
           "focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600/40",
-          // Prevent overlap on very small screens
           "max-w-[90vw]",
+          // disable interactions when hidden to avoid accidental clicks
+          isHidden ? "pointer-events-none" : "",
           className,
         ].join(" ")}
       >

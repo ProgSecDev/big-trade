@@ -1,4 +1,3 @@
-// src/components/FooterCTA.jsx
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Mail } from "lucide-react";
@@ -19,15 +18,14 @@ export default function FooterCTA({
 
   return (
     <footer
+      id="footer-cta" /* Why: anchor for IntersectionObserver */
       className={cn(
         "relative isolate overflow-hidden",
-        // tighter top/bottom padding
         "pt-12 pb-4 sm:pt-16 sm:pb-6",
         "bg-gradient-to-b from-sky-200 via-cyan-200 to-blue-300",
         className
       )}
     >
-      {/* Why: subtle depth without adding extra vertical space */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute -top-20 -left-16 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl" />
         <div className="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl" />
@@ -40,7 +38,6 @@ export default function FooterCTA({
           </h2>
         </div>
 
-        {/* CTA card */}
         <motion.div
           initial={!prefersReducedMotion ? { opacity: 0, y: 16 } : undefined}
           whileInView={!prefersReducedMotion ? { opacity: 1, y: 0 } : undefined}
@@ -56,7 +53,6 @@ export default function FooterCTA({
               "rounded-[26px] backdrop-blur-xl",
               "bg-white/35",
               "ring-1 ring-sky-900/10 shadow-[0_10px_30px_rgba(14,165,233,0.18)]",
-              // tighter inner padding
               "px-6 py-8 sm:px-8 sm:py-10 text-center"
             )}
           >
@@ -77,12 +73,10 @@ export default function FooterCTA({
           </div>
         </motion.div>
 
-        {/* Tagline */}
         <p className="relative mt-3 text-center text-xl text-sky-900">
           {tagline}
         </p>
 
-        {/* Bottom bar */}
         <div className="mt-3 flex flex-col items-center justify-between gap-3 border-t border-slate-400/60 pt-2 text-xs text-slate-800 sm:flex-row">
           <p className="mb-0">© {new Date().getFullYear()} Tech Bridge Group. All rights reserved.</p>
         </div>
