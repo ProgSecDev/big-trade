@@ -77,7 +77,7 @@ function Nav() {
           <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("home")}>
             Home
           </li>
-          <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("story")}>
+          <li className="px-2 py-2 hover:text-cyan-500 cursor-pointer whitespace-nowrap" onClick={() => scrollToSection("mission")}>
             About us
           </li>
 
