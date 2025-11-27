@@ -10,7 +10,7 @@ function Nav() {
   const [isScreenMinimized, setIsScreenMinimized] = useState(false);
 
   const TEXT_FONT = "text-xl"; // fixed menu text size
-  const LOGO_HEIGHT = "h-32";  // fixed logo height
+  const LOGO_HEIGHT = "h-48";  // fixed logo height
 
   const navigate = useNavigate();
   const location = useLocation();
