@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,7 +8,7 @@ import { scroller } from "react-scroll";
 
 import Nav from "./Components/Nav";
 import "./App.css";
-import BigTradePage from "./Sections/BigTradePage";
+import TechBridgePage from "./Sections/TechBridgePage";
 
 const AppContent = () => {
   const location = useLocation();
@@ -30,8 +29,8 @@ const AppContent = () => {
 
       {/* Routes */}
       <Routes>
-        <Route path="/" element={<BigTradePage />} />
-        <Route path="/bigtrade" element={<BigTradePage />} />
+        <Route path="/" element={<TechBridgePage />} />
+        <Route path="/techbridge" element={<TechBridgePage />} />
       </Routes>
 
     </>
