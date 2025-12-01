@@ -18,7 +18,7 @@ export default function FooterCTA({
   ctaTitle = "Ready to transform your IT infrastructure?",
   ctaSubtitle = "Contact us to discuss your technology needs.",
   email = "info@tech-bridgegroup.com",
-  phone = "+1 (555) 123-4567",
+  phone = "+961 76 60 68 18",
   tagline = "Innovate, Connect, Build",
   className,
 }) {
