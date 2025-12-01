@@ -1,9 +1,16 @@
+// src/components/Footer.js
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 function cn(...xs) {
   return xs.filter(Boolean).join(" ");
+}
+
+function toTelHref(phone) {
+  // Why: tel: should ignore spaces/dashes/parentheses.
+  const sanitized = String(phone).replace(/[^+\d]/g, "");
+  return `tel:${sanitized}`;
 }
 
 export default function FooterCTA({
@@ -11,6 +18,7 @@ export default function FooterCTA({
   ctaTitle = "Ready to transform your IT infrastructure?",
   ctaSubtitle = "Contact us to discuss your technology needs.",
   email = "info@tech-bridgegroup.com",
+  phone = "+1 (555) 123-4567",
   tagline = "Innovate, Connect, Build",
   className,
 }) {
@@ -61,14 +69,29 @@ export default function FooterCTA({
             </p>
             <p className="mt-2 text-base text-slate-800">{ctaSubtitle}</p>
 
-            <div className="mt-5 inline-flex items-center gap-2 text-sky-800">
-              <Mail className="h-5 w-5" aria-hidden />
-              <a
-                href={`mailto:${email}`}
-                className="text-lg text-sky-900 underline decoration-sky-500/60 underline-offset-4 transition hover:text-sky-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600/40 rounded"
-              >
-                {email}
-              </a>
+            {/* Contact: stacked vertically, centered */}
+            <div className="mt-5 flex flex-col items-center gap-2 text-sky-800">
+              {/* Email row */}
+              <div className="flex items-center gap-2">
+                <Mail className="h-5 w-5" aria-hidden />
+                <a
+                  href={`mailto:${email}`}
+                  className="text-lg text-sky-900 underline decoration-sky-500/60 underline-offset-4 transition hover:text-sky-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600/40 rounded"
+                >
+                  {email}
+                </a>
+              </div>
+
+              {/* Phone row (below email) */}
+              <div className="flex items-center gap-2">
+                <Phone className="h-5 w-5" aria-hidden />
+                <a
+                  href={toTelHref(phone)}
+                  className="text-lg text-sky-900 underline decoration-sky-500/60 underline-offset-4 transition hover:text-sky-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-600/40 rounded"
+                >
+                  {phone}
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
